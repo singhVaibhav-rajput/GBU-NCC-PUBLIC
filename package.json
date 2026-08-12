@@ -1,0 +1,19 @@
+{
+  "name": "ncc_web",
+  "version": "1.0.0",
+  "description": "this package is made to develop website for 37 BN gzb ncc, gautam buddha university",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/style.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "ejs": "^6.0.1",
+    "ejs-mate": "^4.0.0",
+    "express": "^5.2.1",
+    "tailwindcss": "^4.3.3"
+  }
+}

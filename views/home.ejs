@@ -1,24 +1,292 @@
 <% layout("layouts/boilerplate") %>
 
-<section class="min-h-[70vh] flex items-center justify-center">
-  <div class="text-center px-4">
-    <p class="text-lg text-gray-500 mb-3">Gautam Buddha University</p>
+<!-- HERO SECTION -->
+<section class="relative min-h-[75vh] flex items-center overflow-hidden">
+  <!-- Background Image -->
+  <img
+    src="/images/hero/main.jpg"
+    alt="NCC Cadets"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
 
-    <h1 class="text-4xl md:text-6xl font-bold mb-6">National Cadet Corps</h1>
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-black/55"></div>
 
-    <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-      NCC - GBU
-      <br />
-      Unity and Discipline
-    </p>
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <div class="max-w-3xl text-white">
+      <p class="text-sm md:text-base uppercase tracking-[0.3em] mb-4">
+        Gautam Buddha University
+      </p>
 
-    <!-- <div class="mt-8">
-      <a
-        href="/about"
-        class="inline-block bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-700"
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+        National Cadet Corps
+      </h1>
+
+      <p class="mt-5 text-lg md:text-2xl text-gray-200">NCC - GBU</p>
+
+      <p class="mt-3 text-base md:text-lg text-gray-300">
+        Unity • Discipline • Leadership
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/about"
+          class="px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-200 transition"
+        >
+          Explore NCC
+        </a>
+
+        <a
+          href="/gallery"
+          class="px-6 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition"
+        >
+          View Gallery
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <!-- Text -->
+      <div>
+        <p
+          class="text-sm uppercase tracking-[0.25em] text-green-700 font-semibold mb-3"
+        >
+          About Us
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+          National Cadet Corps at GBU
+        </h2>
+
+        <p class="mt-6 text-gray-600 leading-relaxed">
+          The National Cadet Corps at Gautam Buddha University provides young
+          cadets with opportunities to develop discipline, leadership, teamwork
+          and a strong sense of responsibility.
+        </p>
+
+        <p class="mt-4 text-gray-600 leading-relaxed">
+          Through training, camps, parades and various activities, cadets gain
+          valuable experiences both inside and outside the university.
+        </p>
+
+        <a
+          href="/about"
+          class="inline-block mt-7 px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-700 transition"
+        >
+          Read More
+        </a>
+      </div>
+
+      <!-- Image -->
+      <div class="relative">
+        <img
+          src="/images/activities/01.jpeg"
+          alt="NCC Cadets"
+          class="w-full h-[320px] md:h-[420px] object-cover rounded-2xl shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES PREVIEW -->
+<section class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Section Heading -->
+    <div class="text-center max-w-2xl mx-auto">
+      <p
+        class="text-sm uppercase tracking-[0.25em] text-green-700 font-semibold"
       >
-        Explore NCC
+        What We Do
+      </p>
+
+      <h2 class="mt-3 text-3xl md:text-4xl font-bold text-gray-900">
+        NCC Activities
+      </h2>
+
+      <p class="mt-4 text-gray-600">
+        Training, camps, events and activities that help our cadets develop
+        discipline, leadership and teamwork.
+      </p>
+    </div>
+
+    <!-- Activity Cards -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div
+        class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300"
+      >
+        <div class="overflow-hidden">
+          <img
+            src="/images/activities/01.jpg"
+            alt="NCC Camp"
+            class="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+          />
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-green-700 font-semibold">Training</p>
+
+          <h3 class="mt-2 text-xl font-bold text-gray-900">NCC Camps</h3>
+
+          <p class="mt-3 text-gray-600">
+            Camps provide cadets with practical training, teamwork and valuable
+            experiences.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300"
+      >
+        <div class="overflow-hidden">
+          <img
+            src="/images/activities/02.jpg"
+            alt="NCC Training"
+            class="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+          />
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-green-700 font-semibold">Training</p>
+
+          <h3 class="mt-2 text-xl font-bold text-gray-900">Drill & Training</h3>
+
+          <p class="mt-3 text-gray-600">
+            Regular drills and training help cadets build discipline, confidence
+            and physical fitness.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300"
+      >
+        <div class="overflow-hidden">
+          <img
+            src="/images/activities/03.jpg"
+            alt="NCC Event"
+            class="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+          />
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-green-700 font-semibold">Events</p>
+
+          <h3 class="mt-2 text-xl font-bold text-gray-900">NCC Events</h3>
+
+          <p class="mt-3 text-gray-600">
+            Cadets participate in university events, competitions and various
+            social activities.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- View All Button -->
+    <div class="text-center mt-10">
+      <a
+        href="/activities"
+        class="inline-block px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-700 transition"
+      >
+        View All Activities
       </a>
-    </div> -->
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS PREVIEW -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Section Heading -->
+    <div class="text-center max-w-2xl mx-auto">
+      <p
+        class="text-sm uppercase tracking-[0.25em] text-green-700 font-semibold"
+      >
+        Our Pride
+      </p>
+
+      <h2 class="mt-3 text-3xl md:text-4xl font-bold text-gray-900">
+        Achievements
+      </h2>
+
+      <p class="mt-4 text-gray-600">
+        Recognizing the dedication, discipline and accomplishments of our NCC
+        cadets.
+      </p>
+    </div>
+
+    <!-- Achievement Cards -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Achievement 1 -->
+      <div
+        class="group rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      >
+        <div class="overflow-hidden aspect-[4/3]">
+          <img
+            src="/images/achievements/sarthakAch1.png"
+            alt="NCC Achievement"
+            class="w-full h-full object-cover object-[center_25%] group-hover:scale-105 transition duration-500"
+          />
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-green-700 font-semibold">Achievement</p>
+
+          <h3 class="mt-2 text-xl font-bold text-gray-900">
+            Cadet Achievement
+          </h3>
+
+          <p class="mt-3 text-gray-600">
+            A placeholder for an important achievement, award or recognition
+            received by our cadets.
+          </p>
+        </div>
+      </div>
+
+      <!-- Achievement 2 -->
+      <div
+class="group rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+        <div class="overflow-hidden aspect-[4/3]">
+          <img
+            src="/images/achievements/sarthakAch1.png"
+            alt="NCC Achievement"
+            class="w-full h-full object-cover object-[center_25%] group-hover:scale-105 transition duration-500"
+          />
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-green-700 font-semibold">Recognition</p>
+
+          <h3 class="mt-2 text-xl font-bold text-gray-900">
+            Awards & Recognition
+          </h3>
+
+          <p class="mt-3 text-gray-600">
+            Highlighting awards, competitions and recognition achieved by the
+            NCC unit and its cadets.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- View All -->
+    <div class="text-center mt-10">
+      <a
+        href="/achievements"
+        class="inline-block px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-700 transition"
+      >
+        View All Achievements
+      </a>
+    </div>
   </div>
 </section>

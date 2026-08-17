@@ -10,10 +10,14 @@
     "dev:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/style.css --watch"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.3",
     "@tailwindcss/cli": "^4.3.3",
+    "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "ejs-mate": "^4.0.0",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "multer": "^2.2.0",
     "tailwindcss": "^4.3.3"
   }
 }

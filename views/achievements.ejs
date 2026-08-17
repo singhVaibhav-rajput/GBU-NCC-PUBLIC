@@ -1,9 +1,83 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="min-h-[70vh] flex items-center justify-center">
+<section class="py-20 bg-gray-50">
 
-    <h1 class="text-4xl font-bold">
-        achivements
-    </h1>
+    <div class="max-w-7xl mx-auto px-6">
 
-</div>
+        <div class="text-center mb-12">
+
+            <p class="text-sm uppercase tracking-[0.25em] text-green-600 font-semibold">
+                Gautam Buddha University NCC
+            </p>
+
+            <h1 class="mt-3 text-4xl md:text-5xl font-bold text-gray-900">
+                Achievements
+            </h1>
+
+            <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                Celebrating the achievements and accomplishments
+                of our NCC cadets.
+            </p>
+
+        </div>
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <% achievements.forEach(achievement => { %>
+
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-md
+                           hover:shadow-xl transition duration-300"
+                >
+
+                    <% if (achievement.coverImage) { %>
+
+                        <div class="aspect-[4/3] overflow-hidden">
+
+                            <img
+                                src="<%= achievement.coverImage %>"
+                                alt="<%= achievement.title %>"
+                                class="w-full h-full object-cover
+                                       hover:scale-105 transition duration-500"
+                            >
+
+                        </div>
+
+                    <% } %>
+
+
+                    <div class="p-6">
+
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            <%= achievement.title %>
+                        </h2>
+
+                        <p class="mt-3 text-gray-600 leading-relaxed">
+                            <%= achievement.description %>
+                        </p>
+
+                        <p class="mt-4 text-sm text-gray-500">
+                            <%= achievement.photoCount %> photos
+                        </p>
+
+                        <a
+                            href="/achievements/<%= achievement.slug %>"
+                            class="inline-block mt-5 px-5 py-2.5 rounded-lg
+                                   bg-gray-900 text-white
+                                   hover:bg-gray-700 transition"
+                        >
+                            View Photos →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+
+</section>

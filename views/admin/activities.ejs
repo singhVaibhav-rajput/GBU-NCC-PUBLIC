@@ -1,0 +1,130 @@
+<% layout("layouts/admin") %>
+
+<div class="min-h-screen bg-gray-100 p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="flex justify-between items-center mb-8">
+
+            <div>
+                <p class="text-sm uppercase tracking-[0.25em] text-green-600">
+                    NCC Administration
+                </p>
+
+                <h1 class="text-4xl font-bold text-slate-900 mt-2">
+                    Activities
+                </h1>
+
+                <p class="text-gray-500 mt-2">
+                    Manage NCC activities and photos.
+                </p>
+            </div>
+
+
+            <a
+                href="/admin/activities/new"
+                class="bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700"
+            >
+                + Add Activity
+            </a>
+
+        </div>
+
+
+        <% if (activities.length === 0) { %>
+
+            <div class="bg-white rounded-xl p-10 text-center shadow-sm">
+
+                <h2 class="text-xl font-semibold">
+                    No activities yet
+                </h2>
+
+                <p class="text-gray-500 mt-2">
+                    Create your first NCC activity.
+                </p>
+
+            </div>
+
+        <% } %>
+
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <% activities.forEach(activity => { %>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+
+                    <% if (activity.coverImage) { %>
+
+                        <img
+                            src="<%= activity.coverImage %>"
+                            alt="<%= activity.title %>"
+                            class="w-full h-52 object-cover"
+                        >
+
+                    <% } else { %>
+
+                        <div class="w-full h-52 bg-gray-200 flex items-center justify-center">
+                            No image
+                        </div>
+
+                    <% } %>
+
+
+                    <div class="p-5">
+
+                        <h2 class="text-xl font-bold text-slate-900">
+                            <%= activity.title %>
+                        </h2>
+
+                        <p class="text-gray-500 mt-2">
+                            <%= activity.description %>
+                        </p>
+
+                        <p class="text-sm text-gray-400 mt-3">
+                            <%= activity.photoCount %> photos
+                        </p>
+
+
+                        <div class="flex gap-3 mt-5">
+
+                            <a
+                                href="/activities/<%= activity.slug %>"
+                                target="_blank"
+                                class="px-4 py-2 border rounded-lg"
+                            >
+                                View
+                            </a>
+
+                            <a
+                                href="/admin/activities/<%= activity.id %>/edit"
+                                class="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                            >
+                                Edit
+                            </a>
+<form
+        action="/admin/activities/<%= activity.id %>/delete"
+        method="POST"
+        onsubmit="return confirm('Are you sure you want to delete this activity and all its photos?');"
+    >
+        <button
+            type="submit"
+            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+        >
+            Delete
+        </button>
+    </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NCC Admin Panel</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="min-h-screen flex">
+
+
+        <!-- SIDEBAR -->
+
+        <aside
+            class="w-64 bg-gray-900 text-white
+                   hidden md:flex flex-col"
+        >
+
+            <!-- Logo -->
+
+            <div class="p-6 border-b border-gray-700">
+
+                <h1 class="text-xl font-bold">
+                    NCC Admin
+                </h1>
+
+                <p class="text-sm text-gray-400 mt-1">
+                    Management Panel
+                </p>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="flex-1 p-4">
+
+                <a
+                    href="/admin"
+                    class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition"
+                >
+                    Dashboard
+                </a>
+
+
+                <a
+                    href="/admin/notices"
+                    class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition"
+                >
+                    Notices
+                </a>
+
+
+                <a
+                    href="/admin/activities"
+                    class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition"
+                >
+                    Activities
+                </a>
+
+
+                <a
+                    href="/admin/achievements"
+                    class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition"
+                >
+                    Achievements
+                </a>
+
+            </nav>
+
+
+            <!-- Bottom -->
+
+            <div class="p-4 border-t border-gray-700">
+
+                <a
+                    href="/"
+                    target="_blank"
+                    class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition"
+                >
+                    🌐 View Website
+                </a>
+
+
+                <a
+                    href="/admin/logout"
+                    class="block px-4 py-3 mt-2 rounded-lg
+                           text-red-400
+                           hover:bg-gray-800 transition"
+                >
+                    Logout
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MOBILE TOP BAR -->
+
+        <div
+            class="md:hidden fixed top-0 left-0 right-0
+                   bg-gray-900 text-white z-50"
+        >
+
+            <div class="flex items-center justify-between p-4">
+
+                <h1 class="font-bold">
+                    NCC Admin
+                </h1>
+
+                <button
+                    id="menuButton"
+                    class="text-2xl"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+
+            <!-- Mobile Menu -->
+
+            <nav
+                id="mobileMenu"
+                class="hidden px-4 pb-4"
+            >
+
+                <a
+                    href="/admin"
+                    class="block py-2"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="/admin/notices"
+                    class="block py-2"
+                >
+                    Notices
+                </a>
+
+                <a
+                    href="/admin/activities"
+                    class="block py-2"
+                >
+                    Activities
+                </a>
+
+                <a
+                    href="/admin/achievements"
+                    class="block py-2"
+                >
+                    Achievements
+                </a>
+
+                <a
+                    href="/"
+                    target="_blank"
+                    class="block py-2"
+                >
+                    View Website
+                </a>
+
+                <a
+                    href="/admin/logout"
+                    class="block py-2 text-red-400"
+                >
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+
+
+
+        <!-- MAIN CONTENT -->
+
+        <main
+            class="flex-1 min-w-0
+                   md:ml-0
+                   pt-16 md:pt-0"
+        >
+
+            <%- body %>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const mobileMenu =
+            document.getElementById("mobileMenu");
+
+
+        menuButton?.addEventListener("click", () => {
+
+            mobileMenu.classList.toggle("hidden");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

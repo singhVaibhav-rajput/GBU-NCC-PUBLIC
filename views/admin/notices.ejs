@@ -1,0 +1,219 @@
+<% layout("layouts/admin") %>
+
+<section class="py-16 md:py-24 bg-gray-50">
+
+    <div class="max-w-5xl mx-auto px-6">
+
+        <div class="mb-10">
+
+            <p class="text-sm uppercase tracking-[0.25em]
+                      text-green-600 font-semibold">
+                Admin Panel
+            </p>
+
+            <h1 class="mt-3 text-4xl font-bold text-gray-900">
+                Manage Notices
+            </h1>
+
+        </div>
+
+
+        <!-- CREATE NOTICE -->
+
+        <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8 mb-10">
+
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                Create Notice
+            </h2>
+
+
+            <form
+                action="/admin/notices"
+                method="POST"
+                enctype="multipart/form-data"
+                class="space-y-5"
+            >
+
+                <!-- Title -->
+
+                <div>
+
+                    <label
+                        for="title"
+                        class="block mb-2 font-medium text-gray-700"
+                    >
+                        Notice Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        required
+                        placeholder="Enter notice title"
+                        class="w-full px-4 py-3 border border-gray-300
+                               rounded-lg focus:outline-none
+                               focus:ring-2 focus:ring-green-500"
+                    >
+
+                </div>
+
+
+                <!-- Date -->
+
+                <div>
+
+                    <label
+                        for="date"
+                        class="block mb-2 font-medium text-gray-700"
+                    >
+                        Notice Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        required
+                        class="w-full px-4 py-3 border border-gray-300
+                               rounded-lg focus:outline-none
+                               focus:ring-2 focus:ring-green-500"
+                    >
+
+                </div>
+
+
+                <!-- PDF -->
+
+                <div>
+
+                    <label
+                        for="noticeFile"
+                        class="block mb-2 font-medium text-gray-700"
+                    >
+                        Notice PDF
+                    </label>
+
+                    <input
+                        type="file"
+                        id="noticeFile"
+                        name="noticeFile"
+                        accept="application/pdf"
+                        required
+                        class="w-full px-4 py-3 border border-gray-300
+                               rounded-lg"
+                    >
+
+                    <p class="mt-2 text-sm text-gray-500">
+                        PDF only, maximum 10 MB.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="px-6 py-3 rounded-lg
+                           bg-gray-900 text-white
+                           hover:bg-gray-700 transition"
+                >
+                    Create Notice
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- EXISTING NOTICES -->
+
+        <div>
+
+            <h2 class="text-2xl font-bold text-gray-900 mb-5">
+                Existing Notices
+            </h2>
+
+
+            <div class="space-y-4">
+
+                <% notices.forEach(notice => { %>
+
+                    <div
+                        class="bg-white rounded-xl shadow-sm p-5
+                               flex flex-col md:flex-row
+                               md:items-center md:justify-between gap-4"
+                    >
+
+                        <div>
+
+                            <h3 class="font-semibold text-lg text-gray-900">
+                                <%= notice.title %>
+                            </h3>
+
+                            <p class="text-sm text-gray-500 mt-1">
+                                <%= new Date(notice.date).toLocaleDateString(
+                                    "en-IN",
+                                    {
+                                        day: "2-digit",
+                                        month: "long",
+                                        year: "numeric"
+                                    }
+                                ) %>
+                            </p>
+
+                        </div>
+
+
+                        <div class="flex gap-3">
+
+    <a
+        href="/notices"
+        target="_blank"
+        class="px-4 py-2 rounded-lg
+               border border-gray-300
+               hover:bg-gray-100 transition"
+    >
+        View
+    </a>
+
+
+    <a
+        href="/admin/notices/<%= notice.id %>/edit"
+        class="px-4 py-2 rounded-lg
+               bg-gray-900 text-white
+               hover:bg-gray-700 transition"
+    >
+        Edit
+    </a>
+
+
+    <form
+        action="/admin/notices/<%= notice.id %>/delete"
+        method="POST"
+        onsubmit="return confirm('Are you sure you want to delete this notice?');"
+    >
+
+        <button
+            type="submit"
+            class="px-4 py-2 rounded-lg
+                   bg-red-600 text-white
+                   hover:bg-red-700 transition"
+        >
+            Delete
+        </button>
+
+    </form>
+
+</div>
+
+                    </div>
+
+                <% }) %>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

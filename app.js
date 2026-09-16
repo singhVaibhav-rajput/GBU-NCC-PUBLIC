@@ -7,7 +7,7 @@ const { createClient } = require("@supabase/supabase-js");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 3000;
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -210,5 +210,5 @@ app.get("/test-supabase", async (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`NCC website running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

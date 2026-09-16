@@ -6,8 +6,13 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
-    "dev:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/style.css --watch"
+    "dev:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/style.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/style.css",
+    "start": "node app.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.3",

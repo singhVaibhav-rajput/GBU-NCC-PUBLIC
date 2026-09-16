@@ -5,11 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/images/logos/gbuLogo.png">
     <title>NCC Admin Panel</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,10 +21,8 @@
 
         <!-- SIDEBAR -->
 
-        <aside
-            class="w-64 bg-gray-900 text-white
-                   hidden md:flex flex-col"
-        >
+        <aside class="w-64 bg-gray-900 text-white
+                   hidden md:flex flex-col">
 
             <!-- Logo -->
 
@@ -48,45 +43,30 @@
 
             <nav class="flex-1 p-4">
 
-                <a
-                    href="/admin"
-                    class="block px-4 py-3 rounded-lg
-                           hover:bg-gray-800 transition"
-                >
+                <a href="/admin" class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition">
                     Dashboard
                 </a>
 
 
-                <a
-                    href="/admin/notices"
-                    class="block px-4 py-3 rounded-lg
-                           hover:bg-gray-800 transition"
-                >
+                <a href="/admin/notices" class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition">
                     Notices
                 </a>
 
 
-                <a
-                    href="/admin/activities"
-                    class="block px-4 py-3 rounded-lg
-                           hover:bg-gray-800 transition"
-                >
+                <a href="/admin/activities" class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition">
                     Activities
                 </a>
 
 
-                <a
-                    href="/admin/achievements"
-                    class="block px-4 py-3 rounded-lg
-                           hover:bg-gray-800 transition"
-                >
+                <a href="/admin/achievements" class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition">
                     Achievements
                 </a>
-                <a
-                    href="/admin/students"
-                    class="block px-4 py-3 rounded-lg
-                           hover:bg-gray-800 transition"
-                >
+                <a href="/admin/students" class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition">
                     students
                 </a>
 
@@ -97,22 +77,15 @@
 
             <div class="p-4 border-t border-gray-700">
 
-                <a
-                    href="/"
-                    target="_blank"
-                    class="block px-4 py-3 rounded-lg
-                           hover:bg-gray-800 transition"
-                >
+                <a href="/" target="_blank" class="block px-4 py-3 rounded-lg
+                           hover:bg-gray-800 transition">
                     🌐 View Website
                 </a>
 
 
-                <a
-                    href="/admin/logout"
-                    class="block px-4 py-3 mt-2 rounded-lg
+                <a href="/admin/logout" class="block px-4 py-3 mt-2 rounded-lg
                            text-red-400
-                           hover:bg-gray-800 transition"
-                >
+                           hover:bg-gray-800 transition">
                     Logout
                 </a>
 
@@ -124,10 +97,8 @@
 
         <!-- MOBILE TOP BAR -->
 
-        <div
-            class="md:hidden fixed top-0 left-0 right-0
-                   bg-gray-900 text-white z-50"
-        >
+        <div class="md:hidden fixed top-0 left-0 right-0
+                   bg-gray-900 text-white z-50">
 
             <div class="flex items-center justify-between p-4">
 
@@ -135,10 +106,7 @@
                     NCC Admin
                 </h1>
 
-                <button
-                    id="menuButton"
-                    class="text-2xl"
-                >
+                <button id="menuButton" class="text-2xl">
                     ☰
                 </button>
 
@@ -147,58 +115,33 @@
 
             <!-- Mobile Menu -->
 
-            <nav
-                id="mobileMenu"
-                class="hidden px-4 pb-4"
-            >
+            <nav id="mobileMenu" class="hidden px-4 pb-4">
 
-                <a
-                    href="/admin"
-                    class="block py-2"
-                >
+                <a href="/admin" class="block py-2">
                     Dashboard
                 </a>
 
-                <a
-                    href="/admin/notices"
-                    class="block py-2"
-                >
+                <a href="/admin/notices" class="block py-2">
                     Notices
                 </a>
 
-                <a
-                    href="/admin/activities"
-                    class="block py-2"
-                >
+                <a href="/admin/activities" class="block py-2">
                     Activities
                 </a>
 
-                <a
-                    href="/admin/achievements"
-                    class="block py-2"
-                >
+                <a href="/admin/achievements" class="block py-2">
                     Achievements
                 </a>
-                
-                <a
-                    href="/admin/students"
-                    class="block py-2"
-                >
+
+                <a href="/admin/students" class="block py-2">
                     Students
                 </a>
 
-                <a
-                    href="/"
-                    target="_blank"
-                    class="block py-2"
-                >
+                <a href="/" target="_blank" class="block py-2">
                     View Website
                 </a>
 
-                <a
-                    href="/admin/logout"
-                    class="block py-2 text-red-400"
-                >
+                <a href="/admin/logout" class="block py-2 text-red-400">
                     Logout
                 </a>
 
@@ -210,11 +153,9 @@
 
         <!-- MAIN CONTENT -->
 
-        <main
-            class="flex-1 min-w-0
+        <main class="flex-1 min-w-0
                    md:ml-0
-                   pt-16 md:pt-0"
-        >
+                   pt-16 md:pt-0">
 
             <%- body %>
 

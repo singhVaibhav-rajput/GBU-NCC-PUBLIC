@@ -1,0 +1,638 @@
+<% layout("layouts/admin") %>
+
+<div class="min-h-screen bg-gray-100 p-6 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+
+        <!-- HEADER -->
+
+        <div class="flex flex-col md:flex-row
+                    md:items-center
+                    md:justify-between
+                    gap-4
+                    mb-8">
+
+            <div>
+
+                <p class="text-sm text-green-600
+                          font-semibold uppercase tracking-wider">
+                    NCC Student Management
+                </p>
+
+                <h1 class="text-3xl md:text-4xl
+                           font-bold text-slate-900 mt-1">
+                    Students
+                </h1>
+
+                <p class="text-gray-500 mt-2">
+                    Manage NCC cadet profiles and information.
+                </p>
+
+            </div>
+
+
+            <!-- Add Student -->
+
+            <a
+                href="/admin/students/new"
+                class="inline-flex
+                       items-center
+                       justify-center
+                       px-5 py-3
+                       bg-green-600
+                       text-white
+                       rounded-lg
+                       font-semibold
+                       hover:bg-green-700
+                       transition"
+            >
+                + Add Student
+            </a>
+
+        </div>
+
+
+        <!-- SEARCH + FILTER -->
+
+        <div class="bg-white
+                    rounded-xl
+                    shadow-sm
+                    p-4
+                    mb-6">
+
+            <form
+                method="GET"
+                action="/admin/students"
+                class="grid grid-cols-1 md:grid-cols-3 gap-3"
+            >
+
+
+                <!-- Search -->
+
+                <input
+                    type="text"
+                    name="search"
+                    value="<%= search || '' %>"
+                    placeholder="Search by name or enrollment number..."
+                    class="md:col-span-2
+                           px-4 py-3
+                           border border-gray-300
+                           rounded-lg
+                           focus:outline-none
+                           focus:ring-2
+                           focus:ring-green-500"
+                >
+
+
+                <!-- Batch -->
+
+                <select
+                    name="batch"
+                    class="px-4 py-3
+                           border border-gray-300
+                           rounded-lg
+                           focus:outline-none
+                           focus:ring-2
+                           focus:ring-green-500"
+                >
+
+                    <option value="">
+                        All NCC Batches
+                    </option>
+
+                    <option
+                        value="2025-28"
+                        <%= batch === "2025-28" ? "selected" : "" %>
+                    >
+                        2025-28
+                    </option>
+
+                    <option
+                        value="2026-29"
+                        <%= batch === "2026-29" ? "selected" : "" %>
+                    >
+                        2026-29
+                    </option>
+
+                    <option
+                        value="2027-30"
+                        <%= batch === "2027-30" ? "selected" : "" %>
+                    >
+                        2027-30
+                    </option>
+
+                </select>
+
+
+                <!-- Search Button -->
+
+                <button
+                    type="submit"
+                    class="md:col-span-3
+                           px-6 py-3
+                           bg-slate-900
+                           text-white
+                           rounded-lg
+                           font-semibold
+                           hover:bg-slate-800
+                           transition"
+                >
+                    Search Students
+                </button>
+
+            </form>
+
+        </div>
+
+
+       
+        <!-- STUDENTS TABLE -->
+        
+
+        <div class="bg-white
+                    rounded-xl
+                    shadow-sm
+                    overflow-hidden">
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full text-left min-w-[1050px]">
+
+
+                   
+                    <!-- TABLE HEADER -->
+                    
+                    <thead class="bg-gray-50 border-b">
+
+                        <tr>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600">
+                                Student
+                            </th>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600">
+                                Enrollment No.
+                            </th>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600">
+                                NCC Batch
+                            </th>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600">
+                                NCC Status
+                            </th>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600">
+                                B Certificate
+                            </th>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600">
+                                C Certificate
+                            </th>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600">
+                                Status
+                            </th>
+
+                            <th class="px-6 py-4
+                                       text-sm font-semibold
+                                       text-gray-600
+                                       text-right">
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+               
+                    <!-- TABLE BODY -->
+                   >
+
+                    <tbody class="divide-y divide-gray-100">
+
+
+                        <!-- No Students -->
+
+                        <% if (!students || students.length === 0) { %>
+
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="px-6 py-12 text-center"
+                                >
+
+                                    <div class="text-gray-400
+                                                text-4xl mb-3">
+                                        👨‍🎓
+                                    </div>
+
+                                    <p class="text-gray-500
+                                              font-medium">
+                                        No students found.
+                                    </p>
+
+                                    <% if (search || batch) { %>
+
+                                        <p class="text-sm
+                                                  text-gray-400
+                                                  mt-1">
+                                            Try changing your search
+                                            or batch filter.
+                                        </p>
+
+                                    <% } else { %>
+
+                                        <p class="text-sm
+                                                  text-gray-400
+                                                  mt-1">
+                                            Add your first NCC student.
+                                        </p>
+
+                                    <% } %>
+
+                                </td>
+
+                            </tr>
+
+
+                        <% } else { %>
+
+
+                            <!-- Students -->
+
+                            <% students.forEach(student => { %>
+
+                                <tr class="hover:bg-gray-50 transition">
+
+
+                                    <!-- STUDENT -->
+                                    
+
+                                    <td class="px-6 py-4">
+
+                                        <div class="font-semibold
+                                                    text-slate-900">
+
+                                            <%= student.name || "Unknown" %>
+
+                                        </div>
+
+                                        <div class="text-xs
+                                                    text-gray-400
+                                                    mt-1">
+
+                                            <%= student.email || "No email" %>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    
+                                    <!-- ENROLLMENT -->
+                                   
+
+                                    <td class="px-6 py-4">
+
+                                        <span class="font-mono
+                                                     text-sm
+                                                     text-gray-700">
+
+                                            <%= student.enrollment_no || "—" %>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    
+                                    <!-- NCC BATCH -->
+                                   
+                                    <td class="px-6 py-4">
+
+                                        <span
+                                            class="inline-flex
+                                                   px-3 py-1
+                                                   text-xs
+                                                   font-semibold
+                                                   rounded-full
+                                                   bg-blue-100
+                                                   text-blue-700"
+                                        >
+
+                                            <%= student.ncc_batch || "—" %>
+
+                                        </span>
+
+                                    </td>
+
+
+                                 
+                                    <!-- NCC STATUS -->
+                                   
+                                    <td class="px-6 py-4">
+
+                                        <% if (student.ncc_status === "completed") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-green-100
+                                                       text-green-700"
+                                            >
+                                                Completed
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-yellow-100
+                                                       text-yellow-700"
+                                            >
+                                                Ongoing
+                                            </span>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <!-- B CERTIFICATE -->
+                                   
+
+                                    <td class="px-6 py-4">
+
+                                        <% if (student.b_certificate_status === "passed") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-green-100
+                                                       text-green-700"
+                                            >
+                                                Passed
+                                            </span>
+
+                                        <% } else if (student.b_certificate_status === "failed") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-red-100
+                                                       text-red-700"
+                                            >
+                                                Failed
+                                            </span>
+
+                                        <% } else if (student.b_certificate_status === "ongoing") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-yellow-100
+                                                       text-yellow-700"
+                                            >
+                                                Ongoing
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-gray-100
+                                                       text-gray-600"
+                                            >
+                                                Not Attempted
+                                            </span>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    
+                                    <!-- C CERTIFICATE -->
+                                    
+                                    <td class="px-6 py-4">
+
+                                        <% if (student.c_certificate_status === "passed") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-green-100
+                                                       text-green-700"
+                                            >
+                                                Passed
+                                            </span>
+
+                                        <% } else if (student.c_certificate_status === "failed") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-red-100
+                                                       text-red-700"
+                                            >
+                                                Failed
+                                            </span>
+
+                                        <% } else if (student.c_certificate_status === "ongoing") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-yellow-100
+                                                       text-yellow-700"
+                                            >
+                                                Ongoing
+                                            </span>
+
+                                        <% } else if (student.c_certificate_status === "eligible") { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-blue-100
+                                                       text-blue-700"
+                                            >
+                                                Eligible
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-gray-100
+                                                       text-gray-600"
+                                            >
+                                                Not Eligible
+                                            </span>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    
+                                    <!-- ACTIVE STATUS -->
+                                    
+
+                                    <td class="px-6 py-4">
+
+                                        <% if (student.is_active) { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-green-100
+                                                       text-green-700"
+                                            >
+                                                Active
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span
+                                                class="inline-flex
+                                                       px-3 py-1
+                                                       text-xs
+                                                       font-semibold
+                                                       rounded-full
+                                                       bg-red-100
+                                                       text-red-700"
+                                            >
+                                                Inactive
+                                            </span>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <!-- ACTION -->
+                                
+                                    <td class="px-6 py-4 text-right">
+
+                                        <div class="flex
+                                                    items-center
+                                                    justify-end
+                                                    gap-4">
+
+                                            <a
+                                                href="/admin/students/<%= student.id %>"
+                                                class="text-sm
+                                                       font-semibold
+                                                       text-green-600
+                                                       hover:text-green-800
+                                                       transition"
+                                            >
+                                                View
+                                            </a>
+
+                                            <a
+                                                href="/admin/students/<%= student.id %>/edit"
+                                                class="text-sm
+                                                       font-semibold
+                                                       text-slate-600
+                                                       hover:text-slate-900
+                                                       transition"
+                                            >
+                                                Edit
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            <% }) %>
+
+                        <% } %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- FOOTER -->
+        <!-- ========================================== -->
+
+        <p class="text-center
+                  text-xs
+                  text-gray-400
+                  mt-6">
+
+            GBU-NCC Admin • Student Management
+            <br> 
+            Developed and Designed by Vaibhav Singh
+
+        </p>
+
+    </div>
+
+</div>

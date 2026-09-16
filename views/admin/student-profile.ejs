@@ -1,0 +1,973 @@
+<% layout("layouts/admin") %>
+
+<div class="min-h-screen bg-gray-100 px-4 py-6 md:px-8 md:py-10">
+
+    <div class="max-w-5xl mx-auto">
+
+        <!-- HEADER -->
+       
+        <div class="flex flex-col sm:flex-row
+                    sm:items-center
+                    sm:justify-between
+                    gap-5
+                    mb-8">
+
+            <div>
+
+                <a
+                    href="/admin/students"
+                    class="inline-flex items-center
+                           text-sm font-medium
+                           text-gray-500
+                           hover:text-gray-900
+                           transition"
+                >
+                    ← Back to Students
+                </a>
+
+                <h1 class="text-3xl md:text-4xl
+                           font-bold
+                           text-slate-900
+                           mt-4"
+                >
+                    Student Profile
+                </h1>
+
+                <p class="text-gray-500 mt-2">
+                    View complete NCC student information.
+                </p>
+
+            </div>
+
+
+            <!-- Edit Button -->
+
+            <a
+                href="/admin/students/<%= student.id %>/edit"
+                class="inline-flex
+                       items-center
+                       justify-center
+                       px-5 py-3
+                       bg-green-600
+                       text-white
+                       rounded-lg
+                       font-semibold
+                       text-sm
+                       hover:bg-green-700
+                       active:bg-green-800
+                       transition"
+            >
+                Edit Student
+            </a>
+
+        </div>
+
+
+       
+
+        <div class="bg-white
+                    rounded-2xl
+                    shadow-sm
+                    overflow-hidden
+                    mb-6">
+
+            <div class="p-6 md:p-8">
+
+                <div class="flex flex-col
+                            sm:flex-row
+                            sm:items-center
+                            gap-6">
+
+
+                    <!-- Profile Picture -->
+
+                    <div class="flex-shrink-0">
+
+                        <% if (student.profile_image_url) { %>
+
+                            <img
+                                src="<%= student.profile_image_url %>"
+                                alt="<%= student.name %>"
+                                class="w-28 h-28
+                                       rounded-full
+                                       object-cover
+                                       border-4
+                                       border-gray-100
+                                       shadow-sm"
+                            >
+
+                        <% } else { %>
+
+                            <div
+                                class="w-28 h-28
+                                       rounded-full
+                                       bg-green-50
+                                       border-4
+                                       border-gray-100
+                                       flex
+                                       items-center
+                                       justify-center
+                                       shadow-sm"
+                            >
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-14 h-14 text-green-600"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M15.75 6a3.75 3.75 0 11-7.5 0
+                                           3.75 3.75 0 017.5 0z
+                                           M4.5 20.25a7.5 7.5 0 0115 0"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+                        <% } %>
+
+                    </div>
+
+
+                    <!-- Student Summary -->
+
+                    <div class="flex-1">
+
+                        <div class="flex flex-col
+                                    sm:flex-row
+                                    sm:items-center
+                                    gap-3">
+
+                            <h2 class="text-2xl
+                                       md:text-3xl
+                                       font-bold
+                                       text-slate-900">
+
+                                <%= student.name || "Student" %>
+
+                            </h2>
+
+
+                            
+
+                        </div>
+
+
+                        <p class="text-gray-500 mt-2">
+
+                            NCC Enrollment No.:
+
+                            <span class="font-semibold text-slate-700">
+                                <%= student.enrollment_no || "Not provided" %>
+                            </span>
+
+                        </p>
+
+
+                        <% if (student.ncc_batch) { %>
+
+                            <p class="text-gray-500 mt-1">
+
+                                NCC Batch:
+
+                                <span class="font-semibold text-slate-700">
+                                    <%= student.ncc_batch %>
+                                </span>
+
+                            </p>
+
+                        <% } %>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <div class="bg-white
+                    rounded-2xl
+                    shadow-sm
+                    overflow-hidden">
+
+            <div class="px-6 py-5
+                        border-b
+                        border-gray-100">
+
+                <h2 class="text-xl
+                           font-bold
+                           text-slate-900">
+
+                    Personal Information
+
+                </h2>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Basic student and academic information.
+
+                </p>
+
+            </div>
+
+
+            <div class="p-6">
+
+                <div class="grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            gap-x-8
+                            gap-y-6">
+
+
+                    <!-- Name -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Student Name
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.name || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- DOB -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Date of Birth
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+
+                            <% if (student.dob) { %>
+
+                                <%= new Date(student.dob)
+                                    .toLocaleDateString("en-IN", {
+                                        day: "2-digit",
+                                        month: "2-digit",
+                                        year: "numeric"
+                                    })
+                                %>
+
+                            <% } else { %>
+
+                                Not provided
+
+                            <% } %>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Enrollment -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            NCC Enrollment Number
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.enrollment_no || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Roll -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            College Roll Number
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.roll_no || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Email Address
+                        </p>
+
+                        <p class="mt-1
+                                  font-semibold
+                                  text-slate-900
+                                  break-all">
+
+                            <%= student.email || "Not provided" %>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Student Phone
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.phone || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- NCC Batch -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            NCC Batch
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.ncc_batch || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Student Status -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Student Status
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+
+                            <% if (student.is_active) { %>
+                                Active
+                            <% } else { %>
+                                Inactive
+                            <% } %>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NCC INFORMATION -->
+
+        <div class="mt-6
+                    bg-white
+                    rounded-2xl
+                    shadow-sm
+                    overflow-hidden">
+
+            <div class="px-6 py-5
+                        border-b
+                        border-gray-100">
+
+                <h2 class="text-xl
+                           font-bold
+                           text-slate-900">
+
+                    NCC Information
+
+                </h2>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    NCC entry and completion status.
+
+                </p>
+
+            </div>
+
+
+            <div class="p-6">
+
+                <div class="grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            gap-x-8
+                            gap-y-6">
+
+
+                    <!-- Entry Type -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            NCC Entry Type
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+
+                            <% if (student.ncc_entry_type === "b_certificate_holder") { %>
+
+                                B Certificate Holder
+
+                            <% } else { %>
+
+                                Fresh NCC Cadet
+
+                            <% } %>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- NCC Status -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            NCC Status
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+
+                            <% if (student.ncc_status === "completed") { %>
+
+                                Completed
+
+                            <% } else { %>
+
+                                Ongoing
+
+                            <% } %>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- B CERTIFICATE -->
+
+        <div class="mt-6
+                    bg-white
+                    rounded-2xl
+                    shadow-sm
+                    overflow-hidden">
+
+            <div class="px-6 py-5
+                        border-b
+                        border-gray-100">
+
+                <h2 class="text-xl
+                           font-bold
+                           text-slate-900">
+
+                    B Certificate
+
+                </h2>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    B Certificate examination and result information.
+
+                </p>
+
+            </div>
+
+
+            <div class="p-6">
+
+                <div class="grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            gap-x-8
+                            gap-y-6">
+
+
+                    <!-- Status -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Status
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+
+                            <% if (student.b_certificate_status === "passed") { %>
+
+                                Passed
+
+                            <% } else if (student.b_certificate_status === "failed") { %>
+
+                                Failed
+
+                            <% } else if (student.b_certificate_status === "ongoing") { %>
+
+                                Ongoing
+
+                            <% } else { %>
+
+                                Not Attempted
+
+                            <% } %>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Certificate Number -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Number
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.b_certificate_number || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Year -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Year
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.b_certificate_year || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Grade -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Grade
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.b_certificate_grade || "Not provided" %>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- C CERTIFICATE -->
+
+        <div class="mt-6
+                    bg-white
+                    rounded-2xl
+                    shadow-sm
+                    overflow-hidden">
+
+            <div class="px-6 py-5
+                        border-b
+                        border-gray-100">
+
+                <h2 class="text-xl
+                           font-bold
+                           text-slate-900">
+
+                    C Certificate
+
+                </h2>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    C Certificate eligibility, examination and result information.
+
+                </p>
+
+            </div>
+
+
+            <div class="p-6">
+
+                <div class="grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            gap-x-8
+                            gap-y-6">
+
+
+                    <!-- Status -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Status
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+
+                            <% if (student.c_certificate_status === "passed") { %>
+
+                                Passed
+
+                            <% } else if (student.c_certificate_status === "failed") { %>
+
+                                Failed
+
+                            <% } else if (student.c_certificate_status === "ongoing") { %>
+
+                                Ongoing
+
+                            <% } else if (student.c_certificate_status === "eligible") { %>
+
+                                Eligible
+
+                            <% } else { %>
+
+                                Not Eligible
+
+                            <% } %>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Certificate Number -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Number
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.c_certificate_number || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Year -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Year
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.c_certificate_year || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Grade -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Certificate Grade
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.c_certificate_grade || "Not provided" %>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PARENT INFORMATION -->
+
+        <div class="mt-6
+                    bg-white
+                    rounded-2xl
+                    shadow-sm
+                    overflow-hidden">
+
+            <div class="px-6 py-5
+                        border-b
+                        border-gray-100">
+
+                <h2 class="text-xl
+                           font-bold
+                           text-slate-900">
+
+                    Parent Information
+
+                </h2>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Parent contact information.
+
+                </p>
+
+            </div>
+
+
+            <div class="p-6">
+
+                <div class="grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            gap-6">
+
+
+                    <!-- Father Name -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Father's Name
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.father_name || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Father Phone -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Father's Mobile Number
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.father_phone || "Not provided" %>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BANK INFORMATION -->
+
+        <div class="mt-6
+                    bg-white
+                    rounded-2xl
+                    shadow-sm
+                    overflow-hidden">
+
+            <div class="px-6 py-5
+                        border-b
+                        border-gray-100">
+
+                <h2 class="text-xl
+                           font-bold
+                           text-slate-900">
+
+                    Bank Information
+
+                </h2>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Private information visible only to authorized
+                    NCC administrators.
+
+                </p>
+
+            </div>
+
+
+            <div class="p-6">
+
+                <div class="grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            gap-6">
+
+
+                    <!-- Account Number -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Bank Account Number
+                        </p>
+
+                        <p class="mt-1 font-semibold text-slate-900">
+                            <%= student.bank_account_no || "Not provided" %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- IFSC -->
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            IFSC Code
+                        </p>
+
+                        <p class="mt-1
+                                  font-semibold
+                                  text-slate-900
+                                  uppercase">
+
+                            <%= student.ifsc_code || "Not provided" %>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DANGER ZONE -->
+
+        <div class="mt-6
+                    bg-white
+                    border
+                    border-red-200
+                    rounded-2xl
+                    overflow-hidden">
+
+            <div class="px-6 py-5
+                        border-b
+                        border-red-100">
+
+                <h2 class="text-lg
+                           font-bold
+                           text-red-700">
+
+                    Danger Zone
+
+                </h2>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Permanently deleting this student removes their
+                    NCC profile and associated profile image.
+
+                </p>
+
+            </div>
+
+
+            <div class="p-6">
+
+                <form
+                    action="/admin/students/<%= student.id %>/delete"
+                    method="POST"
+                    onsubmit="return confirm(
+                        'Permanently delete <%= student.name %>? This action cannot be undone.'
+                    );"
+                >
+
+                    <button
+                        type="submit"
+                        class="px-5 py-3
+                               bg-red-600
+                               text-white
+                               rounded-lg
+                               font-semibold
+                               text-sm
+                               hover:bg-red-700
+                               active:bg-red-800
+                               transition"
+                    >
+                        Permanently Delete Student
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <p class="text-center
+                  text-xs
+                  text-gray-400
+                  mt-8">
+
+            GBU-NCC Admin<br>
+            Developed and Designed by Vaibhav Singh
+
+        </p>
+
+
+    </div>
+
+</div>

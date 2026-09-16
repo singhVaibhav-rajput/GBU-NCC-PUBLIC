@@ -1,0 +1,146 @@
+<% layout("layouts/admin") %>
+
+<div class="min-h-screen bg-gray-100 p-6 md:p-8">
+
+    <div class="max-w-2xl mx-auto">
+
+        <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+
+            <!-- Success Header -->
+            <div class="text-center mb-8">
+
+                <div
+                    class="w-16 h-16 mx-auto mb-4
+                           flex items-center justify-center
+                           rounded-full bg-green-100
+                           text-green-600 text-3xl font-bold"
+                >
+                    ✓
+                </div>
+
+                <h1 class="text-3xl font-bold text-slate-900">
+                    Student Created Successfully
+                </h1>
+
+                <p class="text-gray-500 mt-2">
+                    The student profile has been added successfully.
+                </p>
+
+            </div>
+
+
+            <!-- Student Information -->
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+
+                <div class="space-y-5">
+
+                    <!-- Student Name -->
+                    <div>
+
+                        <p class="text-sm text-gray-500 mb-1">
+                            Student
+                        </p>
+
+                        <p class="font-semibold text-slate-900 text-lg">
+                            <%= student.name %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Enrollment Number -->
+                    <div>
+
+                        <p class="text-sm text-gray-500 mb-1">
+                            NCC Enrollment Number
+                        </p>
+
+                        <p class="font-mono font-medium text-slate-900">
+                            <%= student.enrollment_no %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div>
+
+                        <p class="text-sm text-gray-500 mb-1">
+                            Email
+                        </p>
+
+                        <p class="font-medium text-slate-900 break-all">
+                            <%= student.email %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- NCC Batch -->
+                    <div>
+
+                        <p class="text-sm text-gray-500 mb-1">
+                            NCC Batch
+                        </p>
+
+                        <p class="font-medium text-slate-900">
+                            <%= student.ncc_batch %>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 mt-8">
+
+                <a
+                    href="/admin/students/new"
+                    class="flex-1 px-5 py-3
+                           bg-green-600 text-white
+                           text-center rounded-lg
+                           font-semibold
+                           hover:bg-green-700
+                           transition"
+                >
+                    + Add Another Student
+                </a>
+
+
+                <a
+                    href="/admin/students/<%= student.id %>"
+                    class="flex-1 px-5 py-3
+                           border border-gray-300
+                           text-center rounded-lg
+                           font-semibold
+                           text-slate-700
+                           hover:bg-gray-50
+                           transition"
+                >
+                    View Student
+                </a>
+
+
+                <a
+                    href="/admin/students"
+                    class="flex-1 px-5 py-3
+                           border border-gray-300
+                           text-center rounded-lg
+                           font-semibold
+                           text-slate-700
+                           hover:bg-gray-50
+                           transition"
+                >
+                    All Students
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

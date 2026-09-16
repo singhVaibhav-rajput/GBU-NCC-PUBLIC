@@ -1,0 +1,805 @@
+<% layout("layouts/admin") %>
+
+<div class="min-h-screen bg-gray-100 p-6 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+
+        <!-- HEADER -->
+
+        <div class="mb-8">
+
+            <a
+                href="/admin/students"
+                class="text-sm text-gray-500 hover:text-gray-900 transition"
+            >
+                ← Back to Students
+            </a>
+
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-4">
+                Add Student
+            </h1>
+
+            <p class="text-gray-500 mt-2">
+                Create a new NCC student profile.
+            </p>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+            action="/admin/students/new"
+            method="POST"
+            class="bg-white rounded-2xl shadow-sm p-6 md:p-8"
+        >
+
+
+            <!-- BASIC INFORMATION -->
+
+            <div class="mb-10">
+
+                <h2 class="text-xl font-bold text-slate-900 mb-2">
+                    Basic Information
+                </h2>
+
+                <p class="text-sm text-gray-500 mb-5">
+                    Enter the student's basic personal and academic information.
+                </p>
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                    <!-- Full Name -->
+                    <div>
+
+                        <label
+                            for="name"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            placeholder="Enter student's full name"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- Enrollment Number -->
+                    <div>
+
+                        <label
+                            for="enrollment_no"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            NCC Enrollment Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="enrollment_no"
+                            name="enrollment_no"
+                            required
+                            placeholder="Enter enrollment number"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- College Roll Number -->
+                    <div>
+
+                        <label
+                            for="roll_no"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            College Roll Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="roll_no"
+                            name="roll_no"
+                            placeholder="e.g. 000ABC000"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div>
+
+                        <label
+                            for="email"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            placeholder="student@example.com"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- Date of Birth -->
+                    <div>
+
+                        <label
+                            for="dob"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            name="dob"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div>
+
+                        <label
+                            for="phone"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- NCC Batch -->
+                    <div>
+
+                        <label
+                            for="ncc_batch"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            NCC Batch
+                        </label>
+
+                        <select
+                            id="ncc_batch"
+                            name="ncc_batch"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="">
+                                Select NCC Batch
+                            </option>
+
+                            <option value="2025-28">
+                                2025-28
+                            </option>
+
+                            <option value="2026-29">
+                                2026-29
+                            </option>
+
+                            <option value="2027-30">
+                                2027-30
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Student Status -->
+                    <div>
+
+                        <label
+                            for="is_active"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Student Status
+                        </label>
+
+                        <select
+                            id="is_active"
+                            name="is_active"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="true" selected>
+                                Active
+                            </option>
+
+                            <option value="false">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NCC INFORMATION -->
+
+            <div class="mb-10">
+
+                <h2 class="text-xl font-bold text-slate-900 mb-2">
+                    NCC Information
+                </h2>
+
+                <p class="text-sm text-gray-500 mb-5">
+                    Enter the student's NCC entry type and current status.
+                </p>
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                    <!-- Entry Type -->
+                    <div>
+
+                        <label
+                            for="ncc_entry_type"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            NCC Entry Type
+                        </label>
+
+                        <select
+                            id="ncc_entry_type"
+                            name="ncc_entry_type"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="fresh" selected>
+                                Fresh NCC Cadet
+                            </option>
+
+                            <option value="b_certificate_holder">
+                                B Certificate Holder
+                            </option>
+
+                        </select>
+
+                        <p class="text-xs text-gray-500 mt-2">
+                            Select B Certificate Holder if the student already
+                            completed B Certificate before joining GBU.
+                        </p>
+
+                    </div>
+
+
+                    <!-- NCC Status -->
+                    <div>
+
+                        <label
+                            for="ncc_status"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            NCC Status
+                        </label>
+
+                        <select
+                            id="ncc_status"
+                            name="ncc_status"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="ongoing" selected>
+                                Ongoing
+                            </option>
+
+                            <option value="completed">
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- B CERTIFICATE -->
+
+            <div class="mb-10">
+
+                <h2 class="text-xl font-bold text-slate-900 mb-2">
+                    B Certificate
+                </h2>
+
+                <p class="text-sm text-gray-500 mb-5">
+                    Enter B Certificate information if applicable.
+                </p>
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                    <!-- B Status -->
+                    <div>
+
+                        <label
+                            for="b_certificate_status"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            B Certificate Status
+                        </label>
+
+                        <select
+                            id="b_certificate_status"
+                            name="b_certificate_status"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="not_attempted" selected>
+                                Not Attempted
+                            </option>
+
+                            <option value="ongoing">
+                                Ongoing
+                            </option>
+
+                            <option value="passed">
+                                Passed
+                            </option>
+
+                            <option value="failed">
+                                Failed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- B Certificate Number -->
+                    <div>
+
+                        <label
+                            for="b_certificate_number"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            B Certificate Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="b_certificate_number"
+                            name="b_certificate_number"
+                            placeholder="Enter certificate number"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- B Certificate Year -->
+                    <div>
+
+                        <label
+                            for="b_certificate_year"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            B Certificate Year
+                        </label>
+
+                        <input
+                            type="number"
+                            id="b_certificate_year"
+                            name="b_certificate_year"
+                            min="2000"
+                            max="2100"
+                            placeholder="e.g. 2026"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- B Certificate Grade -->
+                    <div>
+
+                        <label
+                            for="b_certificate_grade"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            B Certificate Grade
+                        </label>
+
+                        <select
+                            id="b_certificate_grade"
+                            name="b_certificate_grade"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="">
+                                Select Grade
+                            </option>
+
+                            <option value="A">
+                                A
+                            </option>
+
+                            <option value="B">
+                                B
+                            </option>
+
+                            <option value="C">
+                                C
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- C CERTIFICATE -->
+
+            <div class="mb-10">
+
+                <h2 class="text-xl font-bold text-slate-900 mb-2">
+                    C Certificate
+                </h2>
+
+                <p class="text-sm text-gray-500 mb-5">
+                    Enter C Certificate information when applicable.
+                </p>
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                    <!-- C Status -->
+                    <div>
+
+                        <label
+                            for="c_certificate_status"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            C Certificate Status
+                        </label>
+
+                        <select
+                            id="c_certificate_status"
+                            name="c_certificate_status"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="not_eligible" selected>
+                                Not Eligible
+                            </option>
+
+                            <option value="eligible">
+                                Eligible
+                            </option>
+
+                            <option value="ongoing">
+                                Ongoing
+                            </option>
+
+                            <option value="passed">
+                                Passed
+                            </option>
+
+                            <option value="failed">
+                                Failed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- C Certificate Number -->
+                    <div>
+
+                        <label
+                            for="c_certificate_number"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            C Certificate Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="c_certificate_number"
+                            name="c_certificate_number"
+                            placeholder="Enter certificate number"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- C Certificate Year -->
+                    <div>
+
+                        <label
+                            for="c_certificate_year"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            C Certificate Year
+                        </label>
+
+                        <input
+                            type="number"
+                            id="c_certificate_year"
+                            name="c_certificate_year"
+                            min="2000"
+                            max="2100"
+                            placeholder="e.g. 2027"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- C Certificate Grade -->
+                    <div>
+
+                        <label
+                            for="c_certificate_grade"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            C Certificate Grade
+                        </label>
+
+                        <select
+                            id="c_certificate_grade"
+                            name="c_certificate_grade"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                            <option value="">
+                                Select Grade
+                            </option>
+
+                            <option value="A">
+                                A
+                            </option>
+
+                            <option value="B">
+                                B
+                            </option>
+
+                            <option value="C">
+                                C
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PARENT INFORMATION -->
+
+            <div class="mb-10">
+
+                <h2 class="text-xl font-bold text-slate-900 mb-5">
+                    Parent Information
+                </h2>
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                    <!-- Father Name -->
+                    <div>
+
+                        <label
+                            for="father_name"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Father's Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="father_name"
+                            name="father_name"
+                            placeholder="Enter father's name"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- Father Phone -->
+                    <div>
+
+                        <label
+                            for="father_phone"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Father's Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="father_phone"
+                            name="father_phone"
+                            placeholder="Enter father's phone"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BANK INFORMATION -->
+
+            <div class="mb-10">
+
+                <h2 class="text-xl font-bold text-slate-900 mb-2">
+                    Bank Information
+                </h2>
+
+                <p class="text-sm text-gray-500 mb-5">
+                    This information is private and will only be available
+                    to authorized NCC administrators.
+                </p>
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                    <!-- Bank Account -->
+                    <div>
+
+                        <label
+                            for="bank_account_no"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            Bank Account Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bank_account_no"
+                            name="bank_account_no"
+                            placeholder="Enter account number"
+                            autocomplete="off"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+
+                    <!-- IFSC -->
+                    <div>
+
+                        <label
+                            for="ifsc_code"
+                            class="block font-semibold mb-2 text-gray-700"
+                        >
+                            IFSC Code
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ifsc_code"
+                            name="ifsc_code"
+                            placeholder="e.g. SBIN0001234"
+                            autocomplete="off"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg
+                                   uppercase
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+
+            <div class="flex flex-col sm:flex-row gap-3">
+
+                <a
+                    href="/admin/students"
+                    class="px-6 py-3
+                           border border-gray-300
+                           rounded-lg
+                           text-center
+                           font-medium
+                           text-slate-700
+                           hover:bg-gray-50
+                           transition"
+                >
+                    Cancel
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="px-6 py-3
+                           bg-green-600
+                           text-white
+                           rounded-lg
+                           font-semibold
+                           hover:bg-green-700
+                           transition"
+                >
+                    Create Student
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

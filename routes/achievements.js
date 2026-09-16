@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
 const supabase = require("../config/supabase");
-
 
 // Achievement information
 const achievements = [
@@ -20,31 +18,24 @@ const achievements = [
     }
 ];
 
-
 // Achievements main page
 router.get("/", async (req, res) => {
-
     try {
-
         const achievementCards = [];
 
         for (const achievement of achievements) {
-
             const { data, error } = await supabase.storage
                 .from("achievements")
                 .list(achievement.folder);
-
             if (error) {
                 console.log("Supabase error:", error);
                 continue;
             }
-
             const files = data.filter(file => file.name);
 
             let coverImage = null;
 
             if (files.length > 0) {
-
                 const { data: publicUrlData } = supabase.storage
                     .from("achievements")
                     .getPublicUrl(
@@ -61,28 +52,21 @@ router.get("/", async (req, res) => {
             });
         }
 
-        console.log("🏆 Achievement cards:", achievementCards);
+        
 
         res.render("achievements", {
             achievements: achievementCards
         });
 
     } catch (err) {
-
         console.log("Achievements error:", err);
-
         res.status(500).send("Something went wrong");
-
     }
-
 });
-
 
 // Individual achievement page
 router.get("/:slug", async (req, res) => {
-
     try {
-
         const achievement = achievements.find(
             achievement => achievement.slug === req.params.slug
         );
@@ -91,22 +75,14 @@ router.get("/:slug", async (req, res) => {
             return res.status(404).send("Achievement not found");
         }
 
-        console.log("🏆 Opening achievement:", achievement.title);
-        console.log("📂 Folder:", achievement.folder);
-
-
         const { data, error } = await supabase.storage
             .from("achievements")
             .list(achievement.folder);
 
         if (error) {
-            console.log("❌ Supabase error:", error);
+            console.log(" database error:", error);
             return res.status(500).send("Unable to load photos");
         }
-
-
-        console.log("📸 Files returned from Supabase:", data);
-
 
         const photos = data
             .filter(file => file.name)
@@ -118,15 +94,8 @@ router.get("/:slug", async (req, res) => {
                         `${achievement.folder}/${file.name}`
                     );
 
-                console.log("🖼️ Image URL:", publicUrlData.publicUrl);
-
                 return publicUrlData.publicUrl;
-
             });
-
-
-        console.log("🎴 Final photos:", photos);
-
 
         res.render("achievement-details", {
             achievement,

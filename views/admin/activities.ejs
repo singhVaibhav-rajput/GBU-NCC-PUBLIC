@@ -1,11 +1,8 @@
 <% layout("layouts/admin") %>
 
 <div class="min-h-screen bg-gray-100 p-8">
-
     <div class="max-w-7xl mx-auto">
-
         <div class="flex justify-between items-center mb-8">
-
             <div>
                 <p class="text-sm uppercase tracking-[0.25em] text-green-600">
                     NCC Administration
@@ -19,7 +16,6 @@
                     Manage NCC activities and photos.
                 </p>
             </div>
-
 
             <a
                 href="/admin/activities/new"
@@ -85,7 +81,7 @@
                             <%= activity.photoCount %> photos
                         </p>
 
-
+                        <!-- Buttons -->
                         <div class="flex gap-3 mt-5">
 
                             <a
@@ -102,8 +98,7 @@
                             >
                                 Edit
                             </a>
-<form
-        action="/admin/activities/<%= activity.id %>/delete"
+<form action="/admin/activities/<%= activity.id %>/delete"
         method="POST"
         onsubmit="return confirm('Are you sure you want to delete this activity and all its photos?');"
     >
